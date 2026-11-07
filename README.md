@@ -13,9 +13,13 @@ Points have no cash value. There is no deposit, withdrawal, or payment integrati
 
 Draws are shared and timed: 45 seconds of betting, then an 8 second spin. The server settles the ticket. Claim or print it from the cabinet.
 
-## Zip on SQLite
+## Download the zip
 
-The release zip already contains `vendor/`, a generated `.env`, and a seeded `database/database.sqlite`.
+GitHub hides this file because it is about 19 MB. Save it from this direct link:
+
+https://cdn.jsdelivr.net/gh/websutility/mohit@42cd9978c7aecc4b91b0535055dc48e2b1ca1a22/Amusement-Terminal-Laravel.zip
+
+The zip already contains `vendor/`, a generated `.env`, and a seeded `database/database.sqlite`.
 
 ```bash
 unzip Amusement-Terminal-Laravel.zip
