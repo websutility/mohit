@@ -18,6 +18,12 @@ return [
 
     'signup_bonus' => 10000,
 
+    'admin' => [
+        'username' => env('ADMIN_USERNAME'),
+        'email' => env('ADMIN_EMAIL'),
+        'password' => env('ADMIN_PASSWORD'),
+    ],
+
     'horses' => [
         ['number' => 1, 'name' => 'CHETAK', 'odds' => 6.5, 'weight' => 12, 'color' => 'black'],
         ['number' => 2, 'name' => 'LUCKY', 'odds' => 7.0, 'weight' => 11, 'color' => 'red'],

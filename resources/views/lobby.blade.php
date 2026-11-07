@@ -7,7 +7,6 @@
             <h1>The same floor, in the browser.</h1>
             <p class="lead">Double Chance, Grand Chance, Triple Chance, Triple Fun, Spin 2 Win, Fun Target, Lucky Horse Race and Jackpot ABC. Every draw is timed, shared, and settled on the server.</p>
             @guest
-                <p class="demo">Demo players: <code>pb113</code> / <code>password</code> and <code>user_91</code> / <code>password</code>.</p>
                 <a class="btn gold lg" href="{{ route('login') }}">Enter the floor</a>
             @endguest
         </div>

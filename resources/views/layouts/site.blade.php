@@ -19,6 +19,9 @@
                     @csrf
                     <button type="button" class="btn gold" id="site-refill-btn">Refill 10,000</button>
                 </form>
+                @if (auth()->user()->is_admin)
+                    <a class="btn" href="{{ route('admin.index') }}">Admin</a>
+                @endif
                 <a class="btn" href="{{ route('reports') }}">Reports</a>
                 <form method="post" action="{{ route('logout') }}" class="inline">
                     @csrf

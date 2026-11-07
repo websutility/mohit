@@ -4,30 +4,11 @@ Eight play-money cabinets in Laravel, laid out like a floor terminal: Double Cha
 
 Points have no cash value. There is no deposit, withdrawal, or payment integration. A free refill adds points when the balance is under the cap.
 
-## Demo players
-
-| Username | Password | Points |
-| --- | --- | --- |
-| `pb113` | `password` | 100,000 |
-| `user_91` | `password` | 97,973 |
-
 Draws are shared and timed: 45 seconds of betting, then an 8 second spin. The server settles the ticket. Claim or print it from the cabinet.
 
-## Download the zip
+Players register themselves. An admin account is created only when `ADMIN_PASSWORD` is set in the environment before `php artisan db:seed`. That value stays out of the repository. The admin desk can credit play points. It cannot cash them out.
 
-GitHub hides this file because it is about 19 MB. Save it from this direct link:
-
-https://cdn.jsdelivr.net/gh/websutility/mohit@42cd9978c7aecc4b91b0535055dc48e2b1ca1a22/Amusement-Terminal-Laravel.zip
-
-The zip already contains `vendor/`, a generated `.env`, and a seeded `database/database.sqlite`.
-
-```bash
-unzip Amusement-Terminal-Laravel.zip
-cd Amusement-Terminal-Laravel
-php artisan serve
-```
-
-Open `http://127.0.0.1:8000`. PHP 8.3+ is required, with `pdo_sqlite`, `mbstring`, `openssl`, `tokenizer`, `xml`, `ctype`, `json`, and `bcmath`.
+PHP 8.3+ is required, with `pdo_sqlite`, `mbstring`, `openssl`, `tokenizer`, `xml`, `ctype`, `json`, and `bcmath`.
 
 ## MySQL
 
@@ -50,7 +31,7 @@ Generate a key if `.env` does not already have one:
 php artisan key:generate
 ```
 
-The SQL file already includes the demo players, so do not run `migrate:fresh` after importing it. For a developer install from source instead:
+The SQL file has the tables and no players. For a developer install from source instead:
 
 ```bash
 composer install

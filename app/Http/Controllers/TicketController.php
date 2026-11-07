@@ -13,7 +13,7 @@ class TicketController extends Controller
     {
         $ticket = Ticket::query()
             ->where('code', strtoupper($code))
-            ->where('user_id', auth()->id())
+            ->when(! auth()->user()->is_admin, fn ($query) => $query->where('user_id', auth()->id()))
             ->with(['bets', 'round'])
             ->firstOrFail();
 

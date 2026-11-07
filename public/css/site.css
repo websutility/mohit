@@ -177,13 +177,22 @@ h1 { font-size: 46px; line-height: 1; margin: 8px 0; }
 
 .auth-card label { display: grid; gap: 6px; font-size: 14px; }
 
-.auth-card input {
+.auth-card input, .desk-form input, .desk-form select {
     border: 1px solid var(--line);
     background: #100b08;
     color: white;
     padding: 10px 12px;
     border-radius: 12px;
 }
+
+.desk-form {
+    display: grid;
+    grid-template-columns: 1.4fr .8fr 1.4fr auto;
+    gap: 10px;
+    align-items: end;
+}
+
+.desk-form label { display: grid; gap: 6px; font-size: 14px; }
 
 .check { display: flex !important; align-items: center; gap: 8px; }
 
@@ -217,4 +226,5 @@ th, td { text-align: left; padding: 8px 6px; border-bottom: 1px solid rgba(255,2
     .site-bar { flex-wrap: wrap; }
     .hero { grid-template-columns: 1fr; }
     h1 { font-size: 34px; }
+    .desk-form { grid-template-columns: 1fr; }
 }

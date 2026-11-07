@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AdminController;
 use App\Http\Controllers\Api\ClaimTicketController;
 use App\Http\Controllers\Api\GameStateController;
 use App\Http\Controllers\Api\PlayController;
@@ -21,6 +22,11 @@ Route::middleware('guest')->group(function () {
 });
 
 Route::post('/logout', [AuthController::class, 'destroy'])->middleware('auth')->name('logout');
+
+Route::middleware(['auth', 'admin'])->group(function () {
+    Route::get('/admin', [AdminController::class, 'index'])->name('admin.index');
+    Route::post('/admin/credit', [AdminController::class, 'credit'])->name('admin.credit');
+});
 
 Route::middleware('auth')->group(function () {
     Route::get('/games/{game}', [GameController::class, 'show'])->name('games.show');

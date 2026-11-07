@@ -3,7 +3,7 @@
 -- Create the database first, then import this file:
 --   CREATE DATABASE amusement_terminal CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 --   mysql -u root -p amusement_terminal < amusement_games.sql
--- Demo players: pb113 / password and user_91 / password
+-- No default players. Create an admin with ADMIN_PASSWORD, then php artisan db:seed.
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -172,7 +172,7 @@ CREATE TABLE `migrations` (
   `migration` varchar(255) NOT NULL,
   `batch` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 LOCK TABLES `migrations` WRITE;
@@ -184,7 +184,8 @@ INSERT INTO `migrations` VALUES
 (4,'2026_11_07_054419_create_game_rounds_table',1),
 (5,'2026_11_07_054420_create_tickets_table',1),
 (6,'2026_11_07_054421_create_bets_table',1),
-(7,'2026_11_07_054422_create_wallet_transactions_table',1);
+(7,'2026_11_07_054422_create_wallet_transactions_table',1),
+(8,'2026_11_07_120000_add_is_admin_to_users_table',1);
 /*!40000 ALTER TABLE `migrations` ENABLE KEYS */;
 UNLOCK TABLES;
 DROP TABLE IF EXISTS `password_reset_tokens`;
@@ -260,6 +261,7 @@ CREATE TABLE `users` (
   `username` varchar(255) NOT NULL,
   `email` varchar(255) NOT NULL,
   `balance` bigint(20) unsigned NOT NULL DEFAULT 0,
+  `is_admin` tinyint(1) NOT NULL DEFAULT 0,
   `email_verified_at` timestamp NULL DEFAULT NULL,
   `password` varchar(255) NOT NULL,
   `remember_token` varchar(100) DEFAULT NULL,
@@ -268,14 +270,11 @@ CREATE TABLE `users` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `users_username_unique` (`username`),
   UNIQUE KEY `users_email_unique` (`email`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` VALUES
-(1,'pb113','pb113','pb113@amusement.test',100000,NULL,'$2y$12$.lYqzZMxNCL2EehGyTIzaOiYhh.7jWrgkwKlnvqgjFxjHtDoDL2/y',NULL,'2026-11-07 11:52:28','2026-11-07 11:52:28'),
-(2,'user_91','user_91','user91@amusement.test',97973,NULL,'$2y$12$aHWLUobu811DY79WCWwI.e5KCRlG4mvfjhlhswfT84zK4JAjGpPAa',NULL,'2026-11-07 11:52:29','2026-11-07 11:52:29');
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
 DROP TABLE IF EXISTS `wallet_transactions`;
@@ -296,14 +295,11 @@ CREATE TABLE `wallet_transactions` (
   KEY `wallet_transactions_ticket_id_foreign` (`ticket_id`),
   CONSTRAINT `wallet_transactions_ticket_id_foreign` FOREIGN KEY (`ticket_id`) REFERENCES `tickets` (`id`) ON DELETE SET NULL,
   CONSTRAINT `wallet_transactions_user_id_foreign` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 LOCK TABLES `wallet_transactions` WRITE;
 /*!40000 ALTER TABLE `wallet_transactions` DISABLE KEYS */;
-INSERT INTO `wallet_transactions` VALUES
-(1,1,'signup',100000,100000,NULL,'Opening points','2026-11-07 11:52:28','2026-11-07 11:52:28'),
-(2,2,'signup',97973,97973,NULL,'Opening points','2026-11-07 11:52:29','2026-11-07 11:52:29');
 /*!40000 ALTER TABLE `wallet_transactions` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;

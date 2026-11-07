@@ -22,7 +22,7 @@ class GameplayTest extends TestCase
     public function test_lobby_is_public_and_games_require_login(): void
     {
         $this->get(route('lobby'))->assertOk()->assertSee('Amusement Terminal');
-        $this->get(route('login'))->assertOk()->assertSee('pb113');
+        $this->get(route('login'))->assertOk()->assertSee('Welcome back')->assertDontSee('Use pb');
         $this->get(route('games.show', 'double-chance'))->assertRedirect(route('login'));
         $this->getJson(route('games.state', 'double-chance'))->assertUnauthorized();
     }

@@ -20,18 +20,6 @@
             <p class="error">{{ $errors->first() }}</p>
         @endif
         <button class="btn gold lg" type="submit">Enter</button>
-        <div class="demo-row">
-            <button type="button" class="btn" id="fill-pb">Use pb113</button>
-            <button type="button" class="btn" id="fill-user">Use user_91</button>
-        </div>
         <a href="{{ route('register') }}">Create a new player</a>
     </form>
-    <script>
-        function fill(name) {
-            document.getElementById('username').value = name;
-            document.getElementById('password').value = 'password';
-        }
-        document.getElementById('fill-pb').addEventListener('click', () => fill('pb113'));
-        document.getElementById('fill-user').addEventListener('click', () => fill('user_91'));
-    </script>
 @endsection

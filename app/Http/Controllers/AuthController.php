@@ -39,7 +39,9 @@ class AuthController extends Controller
         Auth::login($user, $request->boolean('remember'));
         $request->session()->regenerate();
 
-        return redirect()->intended(route('lobby'));
+        $home = $user->is_admin ? route('admin.index') : route('lobby');
+
+        return redirect()->intended($home);
     }
 
     public function register(): View
